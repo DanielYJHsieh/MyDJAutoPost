@@ -1,0 +1,19 @@
+name: Hello World Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Say Hello
+        run: echo "🎉 Hello! GitHub Actions 運作正常！"
+
+      - name: Show Current Time
+        run: |
+          echo "現在時間 (UTC)："
+          date
+          echo "台灣時間："
+          TZ='Asia/Taipei' date
