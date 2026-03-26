@@ -21,6 +21,13 @@ def auto_commit():
     subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
     subprocess.run(["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"], check=True)
     subprocess.run(["git", "add", "action2_test.txt"], check=True)
+
+    # 檢查是否有變更需要 commit
+    result = subprocess.run(["git", "diff", "--cached", "--quiet"])
+    if result.returncode == 0:
+        print("ℹ️ 沒有變更需要 commit")
+        return
+
     subprocess.run(["git", "commit", "-m", "自動更新日期時間"], check=True)
     subprocess.run(["git", "push"], check=True)
     print("✅ 已自動 commit 並 push！")
